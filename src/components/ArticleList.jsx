@@ -8,12 +8,14 @@ const ArticleList = () => {
   const fetchAllArticles = async () => {
     try {
       setLoading(true);
+      //fetches all articles via the GET ALL endpoint in the backend.
       const response = await fetch(`${import.meta.env.VITE_API_URL}/articles`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
+      //converts the data type
       const data = await response.json();
       setArticles(data);
       setError(null);
