@@ -1,0 +1,78 @@
+.containerArticleList {
+  background-color: rgb(17, 17, 17);
+  border-radius: 10px;
+  border: 1px solid black;
+  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000,
+    5px 5px 15px 5px rgba(0, 0, 0, 0);
+  max-width: 500px;
+  margin-left: 20px;
+  padding: 30px;
+  height: fit-content;
+}
+
+.articleListContainer {
+  overflow: scroll;
+  height: fit-content;
+  max-height: 300px;
+  margin: 10px;
+}
+
+.articleList {
+  border-collapse: collapse;
+}
+
+.deleteArticleButton {
+  background-color: rgb(77, 13, 13);
+  padding: 2px;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+}
+
+.createArticleButton {
+  margin: 10px;
+}
+
+.searchInput {
+  margin: 10px;
+}
+
+.searchButton {
+  margin: 10px;
+}
+
+.updateArticleButton {
+  background-color: rgb(17, 86, 151);
+  padding: 2px;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+}
+
+.refreshArticlesButton {
+  margin: 10px;
+}
+
+.lowStockButton {
+  margin: 10px;
+}
+
+.updateArticleContainer {
+  background-color: rgb(17, 17, 17);
+  border-radius: 10px;
+  border: 2px solid black;
+  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000,
+    5px 5px 15px 5px rgba(0, 0, 0, 0);
+  width: 400px;
+  margin: 10px;
+  padding: 40px;
+  position: fixed;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.totalArticles {
+  margin: 10px;
+}

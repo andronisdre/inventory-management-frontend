@@ -1,0 +1,11 @@
+.articleFormContainer {
+  display: none;
+  background-color: rgb(17, 17, 17);
+  border-radius: 10px;
+  border: 1px solid black;
+  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000,
+    5px 5px 15px 5px rgba(0, 0, 0, 0);
+  max-width: 400px;
+  margin-right: 20px;
+  padding: 30px;
+}
