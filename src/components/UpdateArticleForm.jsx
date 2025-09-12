@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 
 const UpdateArticleForm = ({ article, onArticleUpdated, isVisible }) => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const [updateValues, setUpdateValues] = useState({
     name: "",
     amount: "",
@@ -36,14 +38,16 @@ const UpdateArticleForm = ({ article, onArticleUpdated, isVisible }) => {
       );
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const updateError = await response.json();
+        setError(updateError.details);
+        console.log("error", error);
       }
 
       toast.success("Successfully updated the article!");
       onArticleUpdated?.();
     } catch (err) {
       console.error("Error updating article:", err);
-      toast.error("An error occurred while updating the article!");
+      toast.error("error updating the article!", error);
     } finally {
       setLoading(false);
     }

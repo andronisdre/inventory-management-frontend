@@ -5,6 +5,7 @@ import { FaTimes } from "react-icons/fa";
 
 const CreateArticleForm = ({ onArticleCreated, isVisible }) => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const [articlevalues, setArticleValues] = useState({
     name: "",
@@ -24,7 +25,9 @@ const CreateArticleForm = ({ onArticleCreated, isVisible }) => {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const creationError = await response.json();
+        setError(creationError.details);
+        console.log("error", error);
       }
 
       const data = await response.json();
@@ -33,7 +36,7 @@ const CreateArticleForm = ({ onArticleCreated, isVisible }) => {
       onArticleCreated?.();
     } catch (err) {
       console.error("Error creating article:", err);
-      toast.error("An error occurred while creating the article!");
+      toast.error(`error creating the article! ${error}`);
     } finally {
       setLoading(false);
     }
