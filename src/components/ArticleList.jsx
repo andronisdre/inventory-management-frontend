@@ -11,7 +11,6 @@ const ArticleList = ({
 }) => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [watchingAllArticles, setWatchingAllArticles] = useState(true);
   const [name, setName] = useState({
     name: "",
@@ -29,9 +28,7 @@ const ArticleList = ({
       const data = await response.json();
       setArticles(data);
       setWatchingAllArticles(true);
-      setError(null);
     } catch (err) {
-      setError(err.message);
       console.error("Error fetching articles:", err);
       toast.error("Error fetching articles!");
     } finally {
@@ -53,9 +50,7 @@ const ArticleList = ({
       const data = await response.json();
       setWatchingAllArticles(false);
       setArticles(data);
-      setError(null);
     } catch (err) {
-      setError(err.message);
       console.error("Error fetching articles with low amount:", err);
       toast.error("Error fetching low stock articles!");
     } finally {
@@ -105,10 +100,6 @@ const ArticleList = ({
 
   if (loading) {
     return <div>Loading articles...</div>;
-  }
-
-  if (error) {
-    return <div style={{ color: "red" }}>Error: {error}</div>;
   }
 
   return (
