@@ -13,15 +13,17 @@ const ArticleList = ({
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [watchingAllArticles, setWatchingAllArticles] = useState(true);
-  const [name, setName] = useState({
-    name: "",
-  });
+  const [nameSearch, setNameSearch] = useState("");
 
   const fetchAllArticles = async () => {
     try {
       console.log("calls twice");
       setLoading(true);
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/articles`);
+      console.log("nameSearch", nameSearch);
+
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/articles?search=${nameSearch}`
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -29,6 +31,7 @@ const ArticleList = ({
 
       const data = await response.json();
       setArticles(data);
+      setNameSearch("");
       setWatchingAllArticles(true);
     } catch (err) {
       console.error("Error fetching articles:", err);
@@ -50,6 +53,7 @@ const ArticleList = ({
       }
 
       const data = await response.json();
+      setNameSearch("");
       setWatchingAllArticles(false);
       setArticles(data);
     } catch (err) {
@@ -89,15 +93,17 @@ const ArticleList = ({
     onShowUpdateForm(article);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetchAllArticles();
+  };
+
   useEffect(() => {
     fetchAllArticles();
   }, [refreshTrigger]);
 
   const onChange = (e) => {
-    const { value } = e.target;
-    setName({
-      value,
-    });
+    setNameSearch(e.target.value);
   };
 
   if (loading) {
@@ -112,12 +118,13 @@ const ArticleList = ({
         Create Article
       </button>
 
-      <form className="formSearchArticle">
+      <form className="formSearchArticle" onSubmit={handleSubmit}>
         <label className="searchInput">
           <input
             type="text"
             name="minimumAmount"
             placeholder="Search articles by name"
+            value={nameSearch}
             onChange={onChange}
           />
         </label>
@@ -125,6 +132,12 @@ const ArticleList = ({
           Search <FaSearch />
         </button>
       </form>
+
+      {watchingAllArticles ? (
+        <p>showing all articles</p>
+      ) : (
+        <p>showing articles with low stock</p>
+      )}
 
       {articles.length === 0 ? (
         <p style={{ backgroundColor: "black" }}>No articles found.</p>
@@ -154,7 +167,7 @@ const ArticleList = ({
               </tr>
             </thead>
             <tbody>
-              {articles.map((article) => (
+              {articles.content.map((article) => (
                 <tr
                   key={article.id}
                   style={{
@@ -220,14 +233,7 @@ const ArticleList = ({
         Get Articles With Low stock
       </button>
 
-      <div className="totalArticles">
-        Total articles: {articles.length} | Articles with low stock:{" "}
-        {
-          articles.filter((article) => {
-            return article.lowStock;
-          }).length
-        }
-      </div>
+      <div className="totalArticles">Total articles: {articles.totalItems}</div>
     </div>
   );
 };
