@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react";
 import "./componentCss/articleForm.css";
 import { toast } from "react-toastify";
+import { FaTimes } from "react-icons/fa";
 
-const UpdateArticleForm = ({ article, onArticleUpdated, isVisible }) => {
+const UpdateArticleForm = ({
+  article,
+  onArticleUpdated,
+  onShowUpdateForm,
+  isVisible,
+}) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -17,8 +23,8 @@ const UpdateArticleForm = ({ article, onArticleUpdated, isVisible }) => {
     if (article) {
       setUpdateValues({
         name: article.name,
-        amount: article.amount.toString(),
-        minimumAmount: article.minimumAmount.toString(),
+        amount: article.amount,
+        minimumAmount: article.minimumAmount,
         unit: article.unit,
       });
     }
@@ -53,6 +59,10 @@ const UpdateArticleForm = ({ article, onArticleUpdated, isVisible }) => {
     }
   };
 
+  const handleCloseForm = (article) => {
+    onShowUpdateForm(article);
+  };
+
   const onChange = (e) => {
     const { name, value } = e.target;
     setUpdateValues({
@@ -68,8 +78,19 @@ const UpdateArticleForm = ({ article, onArticleUpdated, isVisible }) => {
   return (
     <div
       className="articleFormContainer"
-      style={{ display: isVisible ? "block" : "none" }}
+      style={{ display: isVisible ? "block" : "none", position: "relative" }}
     >
+      <FaTimes
+        onClick={handleCloseForm}
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "10px",
+          fontSize: "20px",
+          cursor: "pointer",
+        }}
+      />
+
       <h2>Update Article Form</h2>
       <form className="formArticleCreation" onSubmit={updateArticle}>
         <div className="Fields">

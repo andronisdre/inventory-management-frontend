@@ -3,6 +3,7 @@ import "./componentCss/articleList.css";
 import { MdDeleteForever } from "react-icons/md";
 import { GrDocumentUpdate } from "react-icons/gr";
 import { toast } from "react-toastify";
+import { FaSearch } from "react-icons/fa";
 
 const ArticleList = ({
   refreshTrigger,
@@ -18,6 +19,7 @@ const ArticleList = ({
 
   const fetchAllArticles = async () => {
     try {
+      console.log("calls twice");
       setLoading(true);
       const response = await fetch(`${import.meta.env.VITE_API_URL}/articles`);
 
@@ -120,7 +122,7 @@ const ArticleList = ({
           />
         </label>
         <button className="searchButton" type="submit">
-          Search Articles
+          Search <FaSearch />
         </button>
       </form>
 

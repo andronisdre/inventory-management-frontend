@@ -24,13 +24,13 @@ const HomePage = () => {
   };
 
   const handleShowCreateForm = () => {
-    setShowCreateForm(true);
+    setShowCreateForm(!showCreateForm);
     setShowUpdateForm(false);
   };
 
   const handleShowUpdateForm = (article) => {
     setSelectedArticle(article);
-    setShowUpdateForm(true);
+    setShowUpdateForm(!showUpdateForm);
     setShowCreateForm(false);
   };
 
@@ -39,11 +39,13 @@ const HomePage = () => {
       <ToastContainer />
       <CreateArticleForm
         onArticleCreated={handleArticleCreated}
+        onShowCreateForm={handleShowCreateForm}
         isVisible={showCreateForm}
       />
       <UpdateArticleForm
         article={selectedArticle}
         onArticleUpdated={handleArticleUpdated}
+        onShowUpdateForm={handleShowUpdateForm}
         isVisible={showUpdateForm}
       />
       <ArticleList

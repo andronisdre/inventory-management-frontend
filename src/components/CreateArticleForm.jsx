@@ -3,7 +3,11 @@ import "./componentCss/articleForm.css";
 import { toast } from "react-toastify";
 import { FaTimes } from "react-icons/fa";
 
-const CreateArticleForm = ({ onArticleCreated, isVisible }) => {
+const CreateArticleForm = ({
+  onArticleCreated,
+  onShowCreateForm,
+  isVisible,
+}) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -59,8 +63,18 @@ const CreateArticleForm = ({ onArticleCreated, isVisible }) => {
   return (
     <div
       className="articleFormContainer"
-      style={{ display: isVisible ? "block" : "none" }}
+      style={{ display: isVisible ? "block" : "none", position: "relative" }}
     >
+      <FaTimes
+        onClick={onShowCreateForm}
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "10px",
+          fontSize: "20px",
+          cursor: "pointer",
+        }}
+      />
       <h2>Article Creation Form</h2>
       <form className="formArticleCreation" onSubmit={createArticle}>
         <div className="Fields">
