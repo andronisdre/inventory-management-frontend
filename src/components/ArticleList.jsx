@@ -120,7 +120,7 @@ const ArticleList = ({
 
   return (
     <div className="containerArticleList">
-      <div>
+      <div className="inputSectionContainer">
         <h2>Inventory Management</h2>
 
         <button onClick={onShowCreateForm} className="createArticleButton">

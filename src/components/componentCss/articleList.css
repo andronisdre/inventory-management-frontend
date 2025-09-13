@@ -14,11 +14,15 @@
   margin: 10px;
 }
 
+.inputSectionContainer {
+  border: 1px solid rgb(39, 39, 39);
+}
+
 .articleListContainer {
   overflow: scroll;
   height: fit-content;
   max-height: 600px;
-  margin: 10px;
+  margin-left: 10px;
 }
 
 .articleList {
