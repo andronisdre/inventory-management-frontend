@@ -4,16 +4,20 @@
   border: 1px solid black;
   box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000,
     5px 5px 15px 5px rgba(0, 0, 0, 0);
-  max-width: 500px;
-  margin-left: 20px;
+  max-width: 800px;
+  display: flex;
   padding: 30px;
   height: fit-content;
+}
+
+.currentDisplayText {
+  margin: 10px;
 }
 
 .articleListContainer {
   overflow: scroll;
   height: fit-content;
-  max-height: 300px;
+  max-height: 600px;
   margin: 10px;
 }
 
@@ -71,6 +75,12 @@
   left: 30%;
   transform: translate(-50%, -50%);
   z-index: 10;
+}
+
+.paginationContainer {
+  max-width: 500px;
+  margin: 10px;
+  overflow-x: scroll;
 }
 
 .totalArticles {
