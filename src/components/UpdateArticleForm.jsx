@@ -78,19 +78,9 @@ const UpdateArticleForm = ({
   return (
     <div
       className="articleFormContainer"
-      style={{ display: isVisible ? "block" : "none", position: "relative" }}
+      style={{ display: isVisible ? "block" : "none" }}
     >
-      <FaTimes
-        onClick={handleCloseForm}
-        style={{
-          position: "absolute",
-          top: "10px",
-          right: "10px",
-          fontSize: "20px",
-          cursor: "pointer",
-        }}
-      />
-
+      <FaTimes className="closeFormButton" onClick={handleCloseForm} />
       <h2>Update Article Form</h2>
       <form className="formArticleCreation" onSubmit={updateArticle}>
         <div className="Fields">

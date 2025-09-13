@@ -63,18 +63,9 @@ const CreateArticleForm = ({
   return (
     <div
       className="articleFormContainer"
-      style={{ display: isVisible ? "block" : "none", position: "relative" }}
+      style={{ display: isVisible ? "block" : "none" }}
     >
-      <FaTimes
-        onClick={onShowCreateForm}
-        style={{
-          position: "absolute",
-          top: "10px",
-          right: "10px",
-          fontSize: "20px",
-          cursor: "pointer",
-        }}
-      />
+      <FaTimes className="closeFormButton" onClick={onShowCreateForm} />
       <h2>Article Creation Form</h2>
       <form className="formArticleCreation" onSubmit={createArticle}>
         <div className="Fields">
