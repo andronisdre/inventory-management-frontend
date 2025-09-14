@@ -29,8 +29,12 @@ const HomePage = () => {
   };
 
   const handleShowUpdateForm = (article) => {
+    if (selectedArticle === article) {
+      setShowUpdateForm(!showUpdateForm);
+    } else {
+      setShowUpdateForm(true);
+    }
     setSelectedArticle(article);
-    setShowUpdateForm(!showUpdateForm);
     setShowCreateForm(false);
   };
 

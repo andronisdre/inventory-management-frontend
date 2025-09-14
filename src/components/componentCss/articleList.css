@@ -4,7 +4,7 @@
   border: 1px solid black;
   box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000,
     5px 5px 15px 5px rgba(0, 0, 0, 0);
-  max-width: 800px;
+  max-width: 900px;
   display: flex;
   padding: 30px;
   height: fit-content;
@@ -19,7 +19,7 @@
 }
 
 .articleListContainer {
-  overflow: scroll;
+  overflow: auto;
   height: fit-content;
   max-height: 600px;
   margin-left: 10px;
@@ -84,9 +84,24 @@
 .paginationContainer {
   max-width: 500px;
   margin: 10px;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 .totalArticles {
   margin: 10px;
+}
+
+.pageButton {
+  margin: 2px;
+}
+
+td {
+  max-width: 120px;
+  min-width: 60px;
+  overflow-x: auto;
+}
+
+th {
+  border: 1px solid white;
+  padding: 8px;
 }

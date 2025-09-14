@@ -80,12 +80,17 @@ const UpdateArticleForm = ({
       className="articleFormContainer"
       style={{ display: isVisible ? "block" : "none" }}
     >
-      <FaTimes className="closeFormButton" onClick={handleCloseForm} />
+      <FaTimes
+        className="closeFormButton"
+        onClick={() => handleCloseForm(article)}
+      />
       <h2>Update Article Form</h2>
       <form className="formArticleCreation" onSubmit={updateArticle}>
-        <div className="Fields">
+        <div className="fields">
           <label>
+            <p className="inputText">Name</p>
             <input
+              className="inputField"
               type="text"
               name="name"
               placeholder="Name"
@@ -94,26 +99,31 @@ const UpdateArticleForm = ({
             />
           </label>
           <label>
+            <p className="inputText">Amount</p>
             <input
-              type="text"
+              className="inputField"
+              type="number"
               name="amount"
-              placeholder="Amount"
+              placeholder="Enter positive integer"
               value={updateValues.amount}
               onChange={onChange}
             />
           </label>
           <label>
+            <p className="inputText">Minimum Amount</p>
             <input
-              type="text"
+              className="inputField"
+              type="number"
               name="minimumAmount"
-              placeholder="Minimum Amount"
+              placeholder="Enter positive integer"
               value={updateValues.minimumAmount}
               onChange={onChange}
             />
           </label>
           <label>
+            <p className="inputText">Unit</p>
             <select
-              className="selectUnit"
+              className="inputField"
               name="unit"
               value={updateValues.unit}
               onChange={onChange}
@@ -125,7 +135,7 @@ const UpdateArticleForm = ({
             </select>
           </label>
         </div>
-        <button type="submit" className="Confirmed next">
+        <button type="submit" className="submitButton">
           Update Article
         </button>
       </form>

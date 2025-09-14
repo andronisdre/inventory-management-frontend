@@ -68,9 +68,11 @@ const CreateArticleForm = ({
       <FaTimes className="closeFormButton" onClick={onShowCreateForm} />
       <h2>Article Creation Form</h2>
       <form className="formArticleCreation" onSubmit={createArticle}>
-        <div className="Fields">
+        <div className="fields">
           <label>
+            <p className="inputText">Name</p>
             <input
+              className="inputField"
               type="text"
               name="name"
               placeholder="Name"
@@ -79,26 +81,31 @@ const CreateArticleForm = ({
             />
           </label>
           <label>
+            <p className="inputText">Amount</p>
             <input
-              type="text"
+              className="inputField"
+              type="number"
               name="amount"
-              placeholder="Amount"
+              placeholder="Enter positive integer"
               value={articlevalues.amount}
               onChange={onChange}
             />
           </label>
           <label>
+            <p className="inputText">Minimum Amount</p>
             <input
-              type="text"
+              className="inputField"
+              type="number"
               name="minimumAmount"
-              placeholder="Minimum Amount"
+              placeholder="Enter positive integer"
               value={articlevalues.minimumAmount}
               onChange={onChange}
             />
           </label>
           <label>
+            <p className="inputText">Unit</p>
             <select
-              className="selectUnit"
+              className="inputField"
               name="unit"
               value={articlevalues.unit}
               onChange={onChange}
@@ -110,7 +117,7 @@ const CreateArticleForm = ({
             </select>
           </label>
         </div>
-        <button type="submit" className="Confirmed next">
+        <button type="submit" className="submitButton">
           Create Article
         </button>
       </form>
