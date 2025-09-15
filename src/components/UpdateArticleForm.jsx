@@ -110,7 +110,7 @@ const UpdateArticleForm = ({
             />
           </label>
           <label>
-            <p className="inputText">Minimum Amount</p>
+            <p className="inputText">Minimum Stock</p>
             <input
               className="inputField"
               type="number"

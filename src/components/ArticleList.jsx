@@ -330,7 +330,7 @@ const ArticleList = ({
                     )}
                   </th>
                   <th>Amount</th>
-                  <th>Min Amount</th>
+                  <th>Min Stock</th>
                   <th
                     onClick={() => handleSortBy("unit")}
                     style={{
@@ -347,18 +347,18 @@ const ArticleList = ({
                     )}
                   </th>
                   <th
-                    onClick={() => handleSortBy("createdAt")}
+                    onClick={() => handleSortBy("updatedAt")}
                     style={{
                       cursor: "pointer",
                       backgroundColor:
-                        sortBy === "createdAt" ? "#2b642d" : "initial",
+                        sortBy === "updatedAt" ? "#2b642d" : "initial",
                     }}
                   >
                     Date{" "}
-                    {sortDir === "asc" && sortBy === "createdAt" ? (
-                      <FaSortAlphaDown />
-                    ) : (
+                    {sortDir === "asc" && sortBy === "updatedAt" ? (
                       <FaSortAlphaDownAlt />
+                    ) : (
+                      <FaSortAlphaDown />
                     )}
                   </th>
                   <th>Status</th>
