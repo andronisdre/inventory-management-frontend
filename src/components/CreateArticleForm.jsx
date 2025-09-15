@@ -40,7 +40,7 @@ const CreateArticleForm = ({
       onArticleCreated?.();
     } catch (err) {
       console.error("Error creating article:", err);
-      toast.error(`error creating the article! ${error}`);
+      toast.error(`error creating the article! ${error[0]}`);
     } finally {
       setLoading(false);
     }
@@ -75,7 +75,7 @@ const CreateArticleForm = ({
               className="inputField"
               type="text"
               name="name"
-              placeholder="Name"
+              placeholder="Enter name of article"
               value={articlevalues.name}
               onChange={onChange}
             />

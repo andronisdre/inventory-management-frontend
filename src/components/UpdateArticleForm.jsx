@@ -28,7 +28,7 @@ const UpdateArticleForm = ({
         unit: article.unit,
       });
     }
-  }, [article]);
+  }, [isVisible, article]);
 
   const updateArticle = async (e) => {
     e.preventDefault();
@@ -53,7 +53,7 @@ const UpdateArticleForm = ({
       onArticleUpdated?.();
     } catch (err) {
       console.error("Error updating article:", err);
-      toast.error("error updating the article!", error);
+      toast.error(`error updating the article! ${error[0]}`);
     } finally {
       setLoading(false);
     }
@@ -93,7 +93,7 @@ const UpdateArticleForm = ({
               className="inputField"
               type="text"
               name="name"
-              placeholder="Name"
+              placeholder="Enter name of article"
               value={updateValues.name}
               onChange={onChange}
             />

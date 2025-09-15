@@ -49,7 +49,6 @@ const ArticleList = ({
 
       const data = await response.json();
       setArticles(data);
-      setNameSearch("");
     } catch (err) {
       console.error("Error fetching articles:", err);
       toast.error("Error fetching articles!");
@@ -133,8 +132,8 @@ const ArticleList = ({
       setEditingAmountId(null);
       setAmountChange(0);
     } catch (err) {
-      console.error("Error subtracted article amount:", err);
-      toast.error("Error subtracted the article amount!");
+      console.error("Error subtracting article amount:", err);
+      toast.error("Error subtracting the article amount!");
     } finally {
       setLoading(false);
     }
@@ -240,21 +239,23 @@ const ArticleList = ({
             <input
               type="text"
               name="minimumAmount"
-              placeholder="Search articles by name"
+              placeholder={nameSearch}
               value={nameSearch}
               onChange={onChange}
             />
           </label>
-          <button className="searchButton" type="submit">
-            Search <FaSearch />
-          </button>
+          <div>
+            <button className="searchButton" type="submit">
+              Search <FaSearch />
+            </button>
+            <button
+              className="searchClearButton"
+              onClick={() => setNameSearch("")}
+            >
+              Clear
+            </button>
+          </div>
         </form>
-
-        {watchingLowStock ? (
-          <p className="currentDisplayText">showing articles with low stock</p>
-        ) : (
-          <p className="currentDisplayText">showing all articles</p>
-        )}
 
         <div className="paginationContainer">
           {Array.from({ length: articles.totalPages }, (_, i) => (
@@ -273,14 +274,20 @@ const ArticleList = ({
         <button
           onClick={() => handleFetchAll()}
           className="refreshArticlesButton"
+          style={{
+            backgroundColor: watchingLowStock ? "#1a1a1a" : "black",
+          }}
         >
-          Refresh All Articles
+          All Articles
         </button>
         <button
           onClick={() => handleFetchLowStock()}
           className="lowStockButton"
+          style={{
+            backgroundColor: watchingLowStock ? "black" : "#1a1a1a",
+          }}
         >
-          Refresh Low stock Articles
+          Low stock Articles
         </button>
 
         <div className="totalArticles">
@@ -292,17 +299,27 @@ const ArticleList = ({
         </div>
       </div>
       <div>
-        {articles.length === 0 ? (
-          <p style={{ backgroundColor: "black" }}>No articles found.</p>
+        {articles.content.length === 0 ? (
+          <p
+            style={{
+              backgroundColor: "black",
+              minWidth: "400px",
+              margin: "10px",
+            }}
+          >
+            No articles found.
+          </p>
         ) : (
           <div className="articleListContainer">
             <table className="articleList">
               <thead>
-                <tr style={{ backgroundColor: "black" }}>
+                <tr>
                   <th
                     onClick={() => handleSortBy("name")}
                     style={{
                       cursor: "pointer",
+                      backgroundColor:
+                        sortBy === "name" ? "#000e00ff" : "initial",
                     }}
                   >
                     Name{" "}
@@ -318,6 +335,8 @@ const ArticleList = ({
                     onClick={() => handleSortBy("unit")}
                     style={{
                       cursor: "pointer",
+                      backgroundColor:
+                        sortBy === "unit" ? "#000e00ff" : "initial",
                     }}
                   >
                     Unit{" "}
@@ -331,6 +350,8 @@ const ArticleList = ({
                     onClick={() => handleSortBy("createdAt")}
                     style={{
                       cursor: "pointer",
+                      backgroundColor:
+                        sortBy === "createdAt" ? "#000e00ff" : "initial",
                     }}
                   >
                     Date{" "}
@@ -346,19 +367,11 @@ const ArticleList = ({
               </thead>
               <tbody>
                 {articles.content.map((article) => (
-                  <tr
-                    key={article.id}
-                    style={{
-                      backgroundColor: "black",
-                    }}
-                  >
-                    <td style={{ border: "1px solid white", padding: "8px" }}>
-                      {article.name}
-                    </td>
+                  <tr key={article.id}>
+                    <td>{article.name}</td>
                     <td
+                      className="amountColumn"
                       style={{
-                        border: "1px solid white",
-                        padding: "8px",
                         color: article.lowStock ? "red" : "white",
                         fontWeight: article.lowStock ? "bold" : "normal",
                         cursor: "pointer",
@@ -367,26 +380,18 @@ const ArticleList = ({
                     >
                       {article.amount}
                     </td>
-                    <td style={{ border: "1px solid white", padding: "8px" }}>
-                      {article.minimumAmount}
-                    </td>
-                    <td style={{ border: "1px solid white", padding: "8px" }}>
-                      {article.unit.toLowerCase()}
-                    </td>
-                    <td style={{ border: "1px solid white", padding: "8px" }}>
-                      {new Date(article.createdAt).toLocaleDateString()}
-                    </td>
+                    <td>{article.minimumAmount}</td>
+                    <td>{article.unit.toLowerCase()}</td>
+                    <td>{new Date(article.createdAt).toLocaleDateString()}</td>
                     <td
                       style={{
-                        border: "1px solid white",
-                        padding: "8px",
                         color: article.lowStock ? "red" : "green",
                         fontWeight: "bold",
                       }}
                     >
                       {article.lowStock ? "LOW STOCK" : "OK"}
                     </td>
-                    <td style={{ border: "1px solid white", padding: "8px" }}>
+                    <td>
                       <button
                         className="deleteArticleButton"
                         onClick={() => {
@@ -447,7 +452,7 @@ const ArticleList = ({
                       style={{
                         flex: 1,
                         padding: "8px 12px",
-                        backgroundColor: "#631c34ff",
+                        backgroundColor: "rgb(77, 13, 13)",
                         color: "white",
                         border: "none",
                         borderRadius: "4px",
