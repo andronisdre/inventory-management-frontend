@@ -7,8 +7,7 @@
   max-width: 900px;
   display: flex;
   padding: 30px;
-  height: fit-content;
-  max-height: 90%;
+  max-height: fit-content;
 }
 
 .currentDisplayText {
@@ -21,7 +20,8 @@
 
 .articleListContainer {
   overflow: auto;
-  max-height: 100%;
+  height: fit-content;
+  max-height: 600px;
   margin-left: 10px;
 }
 
