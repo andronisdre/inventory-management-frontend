@@ -319,7 +319,7 @@ const ArticleList = ({
                     style={{
                       cursor: "pointer",
                       backgroundColor:
-                        sortBy === "name" ? "#000e00ff" : "initial",
+                        sortBy === "name" ? "#2b642d" : "initial",
                     }}
                   >
                     Name{" "}
@@ -336,7 +336,7 @@ const ArticleList = ({
                     style={{
                       cursor: "pointer",
                       backgroundColor:
-                        sortBy === "unit" ? "#000e00ff" : "initial",
+                        sortBy === "unit" ? "#2b642d" : "initial",
                     }}
                   >
                     Unit{" "}
@@ -351,7 +351,7 @@ const ArticleList = ({
                     style={{
                       cursor: "pointer",
                       backgroundColor:
-                        sortBy === "createdAt" ? "#000e00ff" : "initial",
+                        sortBy === "createdAt" ? "#2b642d" : "initial",
                     }}
                   >
                     Date{" "}
