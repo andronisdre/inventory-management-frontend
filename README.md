@@ -5,6 +5,8 @@
 I made this project as an assignment to show VGR on the recruitment day.
 
 The project is made to handle the inventory of articles/products in a healthcare center. The project is made in vs code with react + vite
+For the UI to look correct you should make sure that your browser has dark mode enabled.
+The light mode design hasnt been configured.
 
 ## Functionality
 First you need to start the backend.
