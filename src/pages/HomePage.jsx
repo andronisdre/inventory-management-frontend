@@ -38,8 +38,11 @@ const HomePage = () => {
     setShowCreateForm(false);
   };
 
+  // Determine if any form is active for mobile layout
+  const isFormActive = showCreateForm || showUpdateForm;
+
   return (
-    <div className="container">
+    <div className={`container ${isFormActive ? "form-active" : ""}`}>
       <ToastContainer />
       <CreateArticleForm
         onArticleCreated={handleArticleCreated}

@@ -1,121 +1,132 @@
 .containerArticleList {
-  background-color: rgb(17, 17, 17);
-  border-radius: 10px;
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
   border: 1px solid black;
-  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000,
-    5px 5px 15px 5px rgba(0, 0, 0, 0);
-  max-width: 900px;
+  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000;
+  width: 100%;
   display: flex;
-  padding: 30px;
-  max-height: fit-content;
-}
-
-.currentDisplayText {
-  margin: 10px;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  padding: clamp(12px, 2.5vw, 30px);
+  align-items: flex-start;
+  overflow-x: auto;
+  max-height: calc(100vh - 40px);
 }
 
 .inputSectionContainer {
-  border: 1px solid rgb(39, 39, 39);
+  flex: 1 1 320px;
+  min-width: 260px;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .articleListContainer {
-  overflow: auto;
-  height: fit-content;
-  max-height: 600px;
-  margin-left: 10px;
+  flex: 2 1 540px;
+  min-width: 260px;
+  overflow-x: auto;
+  max-height: calc(100vh - 220px);
 }
 
 .articleList {
+  width: 100%;
   border-collapse: collapse;
+  table-layout: auto;
+  min-width: 720px;
 }
 
-.deleteArticleButton {
-  background-color: rgb(77, 13, 13);
-  padding: 2px;
-  font-size: 20px;
+th,
+td {
+  padding: clamp(6px, 1.2vw, 10px);
+  border: 1px solid rgb(146, 146, 146);
+  text-align: left;
+  vertical-align: middle;
+  word-break: break-word;
+  white-space: normal;
+}
+
+tr {
+  background-color: #050505;
+}
+
+.deleteArticleButton,
+.updateArticleButton {
   width: 30px;
   height: 30px;
+  padding: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.createArticleButton {
-  margin: 10px;
+.createArticleButton,
+.refreshArticlesButton,
+.lowStockButton,
+.searchButton,
+.searchClearButton {
+  width: 100%;
+  max-width: 220px;
 }
 
-.searchInput {
-  margin: 10px;
+.paginationContainer {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  overflow-x: auto;
+  max-width: 100%;
 }
 
-.searchButton {
-  margin: 10px;
+.edit-amount-popup {
+  position: absolute;
+  background-color: var(--bg);
+  border: 2px solid white;
+  border-radius: 8px;
+  padding: 12px;
+  z-index: 100;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  min-width: 220px;
+}
+
+.updateArticleContainer {
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  border: 2px solid black;
+  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000;
+  width: min(90%, 420px);
+  margin: 0;
+  padding: clamp(16px, 3vw, 40px);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+td {
+  max-width: 200px;
+  min-width: 60px;
+  overflow-wrap: break-word;
 }
 
 .amountColumn:hover {
   background-color: #2b642d;
 }
 
-.searchClearButton {
-  background-color: rgb(77, 13, 13);
-}
+@media (max-width: 768px) {
+  .inputSectionContainer,
+  .articleListContainer {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
 
-.updateArticleButton {
-  background-color: rgb(17, 86, 151);
-  padding: 2px;
-  font-size: 20px;
-  width: 30px;
-  height: 30px;
-}
+  .articleList {
+    min-width: 600px;
+  }
 
-.refreshArticlesButton {
-  margin: 10px;
-}
-
-.lowStockButton {
-  margin: 10px;
-}
-
-.updateArticleContainer {
-  background-color: rgb(17, 17, 17);
-  border-radius: 10px;
-  border: 2px solid black;
-  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000,
-    5px 5px 15px 5px rgba(0, 0, 0, 0);
-  width: 400px;
-  margin: 10px;
-  padding: 40px;
-  position: fixed;
-  top: 50%;
-  left: 30%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-}
-
-.paginationContainer {
-  max-width: 500px;
-  margin: 10px;
-  overflow-x: auto;
-}
-
-.totalArticles {
-  margin: 10px;
-}
-
-.pageButton {
-  margin: 2px;
-}
-
-td {
-  max-width: 120px;
-  min-width: 60px;
-  overflow-x: auto;
-  border: 1px solid rgb(146, 146, 146);
-  padding: 8px;
-}
-
-th {
-  border: 1px solid rgb(146, 146, 146);
-  padding: 8px;
-}
-
-tr {
-  background-color: #050505;
+  .createArticleButton,
+  .refreshArticlesButton,
+  .lowStockButton {
+    max-width: 100%;
+  }
 }
