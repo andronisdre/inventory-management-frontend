@@ -16,6 +16,7 @@ const CreateArticleForm = ({
     amount: "",
     minimumAmount: "",
     unit: "",
+    category: "",
   });
 
   const createArticle = async (e) => {
@@ -35,7 +36,13 @@ const CreateArticleForm = ({
       }
 
       const data = await response.json();
-      setArticleValues({ name: "", amount: "", minimumAmount: "", unit: "" });
+      setArticleValues({
+        name: "",
+        amount: "",
+        minimumAmount: "",
+        unit: "",
+        category: "",
+      });
       toast.success("Successfully created the article!");
       onArticleCreated?.();
     } catch (err) {
@@ -114,6 +121,22 @@ const CreateArticleForm = ({
               <option value="PIECES">Pieces</option>
               <option value="MILLILITERS">Milliliters</option>
               <option value="GRAMS">Grams</option>
+            </select>
+          </label>
+          <label>
+            <p className="inputText">Category</p>
+            <select
+              className="inputField"
+              name="category"
+              value={articlevalues.category}
+              onChange={onChange}
+            >
+              <option value="">Category</option>
+              <option value="MEDICATION">Medication</option>
+              <option value="EQUIPMENT">Equipment</option>
+              <option value="CONSUMABLE">Consumable</option>
+              <option value="CLEANING">Cleaning</option>
+              <option value="OTHER">Other</option>
             </select>
           </label>
         </div>

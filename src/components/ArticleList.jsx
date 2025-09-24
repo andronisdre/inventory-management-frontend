@@ -19,6 +19,7 @@ const ArticleList = ({
   const [loading, setLoading] = useState(true);
   const [watchingLowStock, setWatchingLowStock] = useState(false);
   const [nameSearch, setNameSearch] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("");
   const [pageNumber, setPageNumber] = useState(0);
   const [editingAmountId, setEditingAmountId] = useState(null);
   const [amountChange, setAmountChange] = useState(0);
@@ -30,7 +31,8 @@ const ArticleList = ({
     page = pageNumber,
     watchingLow = watchingLowStock,
     fieldToSortBy = sortBy,
-    direction = sortDir
+    direction = sortDir,
+    filterByCategory = categoryFilter
   ) => {
     try {
       setLoading(true);
@@ -40,7 +42,7 @@ const ArticleList = ({
       const response = await fetch(
         `${
           import.meta.env.VITE_API_URL
-        }/articles?page=${page}&onlyLowStockArticles=${watchingLow}&search=${nameSearch}&sortBy=${fieldToSortBy}&sortDir=${direction}`
+        }/articles?page=${page}&onlyLowStockArticles=${watchingLow}&search=${nameSearch}&categoryFilter=${filterByCategory}&sortBy=${fieldToSortBy}&sortDir=${direction}`
       );
 
       if (!response.ok) {
@@ -221,6 +223,17 @@ const ArticleList = ({
     setNameSearch(e.target.value);
   };
 
+  const filterByCategory = (e) => {
+    setCategoryFilter(e.target.value);
+    fetchAllArticles(
+      pageNumber,
+      watchingLowStock,
+      sortBy,
+      sortDir,
+      e.target.value
+    );
+  };
+
   if (loading) {
     return <div>Loading articles...</div>;
   }
@@ -297,6 +310,22 @@ const ArticleList = ({
             <p>Total articles: {articles.totalItems}</p>
           )}
         </div>
+        <label>
+          <p className="inputText">Filter by Category</p>
+          <select
+            className="inputField"
+            name="category"
+            value={categoryFilter}
+            onChange={filterByCategory}
+          >
+            <option value="">All Categories</option>
+            <option value="MEDICATION">Medication</option>
+            <option value="EQUIPMENT">Equipment</option>
+            <option value="CONSUMABLE">Consumable</option>
+            <option value="CLEANING">Cleaning</option>
+            <option value="OTHER">Other</option>
+          </select>
+        </label>
       </div>
       <div>
         {articles.content.length === 0 ? (
@@ -347,6 +376,21 @@ const ArticleList = ({
                     )}
                   </th>
                   <th
+                    onClick={() => handleSortBy("category")}
+                    style={{
+                      cursor: "pointer",
+                      backgroundColor:
+                        sortBy === "category" ? "#2b642d" : "initial",
+                    }}
+                  >
+                    Category{" "}
+                    {sortDir === "asc" && sortBy === "category" ? (
+                      <FaSortAlphaDownAlt />
+                    ) : (
+                      <FaSortAlphaDown />
+                    )}
+                  </th>
+                  <th
                     onClick={() => handleSortBy("updatedAt")}
                     style={{
                       cursor: "pointer",
@@ -382,6 +426,7 @@ const ArticleList = ({
                     </td>
                     <td>{article.minimumAmount}</td>
                     <td>{article.unit.toLowerCase()}</td>
+                    <td>{article.category.toLowerCase()}</td>
                     <td>{new Date(article.createdAt).toLocaleDateString()}</td>
                     <td
                       style={{

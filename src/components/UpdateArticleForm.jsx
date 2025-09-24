@@ -17,6 +17,7 @@ const UpdateArticleForm = ({
     amount: "",
     minimumAmount: "",
     unit: "",
+    category: "",
   });
 
   useEffect(() => {
@@ -26,6 +27,7 @@ const UpdateArticleForm = ({
         amount: article.amount,
         minimumAmount: article.minimumAmount,
         unit: article.unit,
+        category: article.category,
       });
     }
   }, [isVisible, article]);
@@ -132,6 +134,22 @@ const UpdateArticleForm = ({
               <option value="PIECES">Pieces</option>
               <option value="MILLILITERS">Milliliters</option>
               <option value="GRAMS">Grams</option>
+            </select>
+          </label>
+          <label>
+            <p className="inputText">Category</p>
+            <select
+              className="inputField"
+              name="category"
+              value={updateValues.category}
+              onChange={onChange}
+            >
+              <option value="">Category</option>
+              <option value="MEDICATION">Medication</option>
+              <option value="EQUIPMENT">Equipment</option>
+              <option value="CONSUMABLE">Consumable</option>
+              <option value="CLEANING">Cleaning</option>
+              <option value="OTHER">Other</option>
             </select>
           </label>
         </div>
