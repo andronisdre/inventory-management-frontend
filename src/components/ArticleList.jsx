@@ -257,7 +257,7 @@ const ArticleList = ({
               onChange={onChange}
             />
           </label>
-          <div>
+          <div className="searchAndClearContainer">
             <button className="searchButton" type="submit">
               Search <FaSearch />
             </button>
@@ -494,33 +494,13 @@ const ArticleList = ({
                   <div style={{ display: "flex", gap: "10px" }}>
                     <button
                       onClick={(e) => handleSubtractSubmit(e, editingAmountId)}
-                      style={{
-                        flex: 1,
-                        padding: "8px 12px",
-                        backgroundColor: "rgb(77, 13, 13)",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "4px",
-                        cursor: "pointer",
-                        fontSize: "14px",
-                        fontWeight: "bold",
-                      }}
+                      className="subtractButton"
                     >
                       Subtract
                     </button>
                     <button
                       onClick={(e) => handleAddSubmit(e, editingAmountId)}
-                      style={{
-                        flex: 1,
-                        padding: "8px 12px",
-                        backgroundColor: "#2b642d",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "4px",
-                        cursor: "pointer",
-                        fontSize: "14px",
-                        fontWeight: "bold",
-                      }}
+                      className="addAmountButton"
                     >
                       Add
                     </button>

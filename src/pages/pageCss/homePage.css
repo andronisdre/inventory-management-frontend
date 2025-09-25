@@ -2,8 +2,8 @@
   display: flex;
   min-height: 100vh;
   padding: 1rem;
-  gap: 1rem;
   align-items: center;
+  justify-content: center;
   max-width: 100%;
   box-sizing: border-box;
 }

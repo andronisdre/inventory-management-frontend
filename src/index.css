@@ -14,6 +14,7 @@
   --surface-border: rgb(39, 39, 39);
   --accent: #646cff;
   --accent-2: #535bf2;
+  --update: #14435c;
   --danger: rgb(77, 13, 13);
   --success: #2b642d;
   --radius: 10px;
@@ -72,7 +73,6 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  margin: 10px 10px 0px 0px;
 }
 button:hover {
   border-color: var(--accent);

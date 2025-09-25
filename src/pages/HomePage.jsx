@@ -38,7 +38,6 @@ const HomePage = () => {
     setShowCreateForm(false);
   };
 
-  // Determine if any form is active for mobile layout
   const isFormActive = showCreateForm || showUpdateForm;
 
   return (
